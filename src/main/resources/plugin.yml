@@ -1,0 +1,8 @@
+name: IEconomy
+version: @version@
+main: cx.rain.mc.bukkit.ieconomy.IEconomy
+api-version: 1.13
+prefix: IEconomy
+authors: [QiuYuLuo]
+description: An economy plugin for Bukkit server.
+website: https://github.com/illusMC/IEconomy

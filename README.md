@@ -1,2 +1,2 @@
 # IEconomy
-A economy plugin for Bukkit server.
+An economy plugin for Bukkit server.
