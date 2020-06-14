@@ -69,3 +69,5 @@ processResources {
         filter ReplaceTokens, tokens: [version: version]
     }
 }
+
+tasks.build.dependsOn tasks.shadowJar

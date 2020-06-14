@@ -5,12 +5,11 @@ import cc.sfclub.util.common.UpdateChecker;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import cx.rain.mc.bukkit.ieconomy.config.Config;
-import cx.rain.mc.bukkit.ieconomy.config.I18N;
-import cx.rain.mc.bukkit.ieconomy.util.Log;
+import cx.rain.mc.bukkit.ieconomy.config.I18n;
+import cx.rain.mc.bukkit.ieconomy.utility.Log;
 import lombok.SneakyThrows;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.io.File;
 import java.util.Optional;
 
 public class Loader extends BukkitRunnable {
@@ -34,12 +33,12 @@ public class Loader extends BukkitRunnable {
         config=(Config)config.reloadConfig();
         Config.setInst(config);
         Log.info("Loading Language..");
-        I18N i18N=new I18N(IEconomy.getInst().getDataFolder().getAbsolutePath());
+        I18n i18N=new I18n(IEconomy.getInst().getDataFolder().getAbsolutePath());
         if(!SimpleFile.exists(IEconomy.getInst().getDataFolder().getAbsolutePath()+"/i18n.json")){
             i18N.saveConfig();
         }
-        i18N=(I18N)i18N.reloadConfig();
-        I18N.setInst(i18N);
+        i18N=(I18n)i18N.reloadConfig();
+        I18n.setInst(i18N);
     }
     @SneakyThrows
     private void loadDatabase() {
@@ -57,7 +56,7 @@ public class Loader extends BukkitRunnable {
         if(res.isPresent()){
             UpdateChecker.ReleaseInfo rel=res.get();
             if(rel.tag_name.equals(IEconomy.getInst().getDescription().getVersion()))return;
-            Log.info(I18N.get().new_version_published.replaceAll("%v",rel.tag_name).replaceAll("%date",rel.published_at));
+            Log.info(I18n.get().new_version_published.replaceAll("%v",rel.tag_name).replaceAll("%date",rel.published_at));
         }
     }
 }

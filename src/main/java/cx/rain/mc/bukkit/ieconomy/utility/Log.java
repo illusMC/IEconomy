@@ -1,4 +1,4 @@
-package cx.rain.mc.bukkit.ieconomy.util;
+package cx.rain.mc.bukkit.ieconomy.utility;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
