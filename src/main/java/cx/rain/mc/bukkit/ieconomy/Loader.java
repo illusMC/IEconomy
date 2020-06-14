@@ -16,7 +16,7 @@ public class Loader extends BukkitRunnable {
 
     @Override
     public void run() {
-        IEconomy.getInst().getDataFolder().mkdir();
+        IEconomy.getInstance().getDataFolder().mkdir();
         Log.info("Loading Configs..");
         loadConfigs();
         Log.info("Checking Updates.");
@@ -25,21 +25,23 @@ public class Loader extends BukkitRunnable {
         loadDatabase();
 
     }
+
     private void loadConfigs(){
-        Config config=new Config(IEconomy.getInst().getDataFolder().getAbsolutePath());
-        if(!SimpleFile.exists(IEconomy.getInst().getDataFolder().getAbsolutePath()+"/config.json")){
+        Config config=new Config(IEconomy.getInstance().getDataFolder().getAbsolutePath());
+        if(!SimpleFile.exists(IEconomy.getInstance().getDataFolder().getAbsolutePath()+"/config.json")){
             config.saveConfig();
         }
         config=(Config)config.reloadConfig();
         Config.setInst(config);
         Log.info("Loading Language..");
-        I18n i18N=new I18n(IEconomy.getInst().getDataFolder().getAbsolutePath());
-        if(!SimpleFile.exists(IEconomy.getInst().getDataFolder().getAbsolutePath()+"/i18n.json")){
+        I18n i18N=new I18n(IEconomy.getInstance().getDataFolder().getAbsolutePath());
+        if(!SimpleFile.exists(IEconomy.getInstance().getDataFolder().getAbsolutePath()+"/i18n.json")){
             i18N.saveConfig();
         }
         i18N=(I18n)i18N.reloadConfig();
         I18n.setInst(i18N);
     }
+
     @SneakyThrows
     private void loadDatabase() {
         HikariConfig hikariConfig = new HikariConfig();
@@ -50,12 +52,13 @@ public class Loader extends BukkitRunnable {
         HikariDataSource ds = new HikariDataSource(hikariConfig);
         //todo dao here
     }
+
     private void checkUpdate(){
         UpdateChecker updateChecker=new UpdateChecker("illusMC","IEconomy","master");
         Optional<UpdateChecker.ReleaseInfo> res=updateChecker.check();
         if(res.isPresent()){
             UpdateChecker.ReleaseInfo rel=res.get();
-            if(rel.tag_name.equals(IEconomy.getInst().getDescription().getVersion()))return;
+            if(rel.tag_name.equals(IEconomy.getInstance().getDescription().getVersion()))return;
             Log.info(I18n.get().new_version_published.replaceAll("%v",rel.tag_name).replaceAll("%date",rel.published_at));
         }
     }
