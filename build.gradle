@@ -8,6 +8,7 @@ targetCompatibility = '1.8'
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
     maven {
         name = 'spigotmc-repo'
         url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
@@ -20,6 +21,9 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    implementation 'com.github.iceBear67:Util:-SNAPSHOT'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
     compileOnly 'org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT'
 }
 
