@@ -1,5 +1,6 @@
 package cx.rain.mc.bukkit.ieconomy.utility;
 
+import cx.rain.mc.bukkit.ieconomy.IEconomy;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
@@ -16,7 +17,7 @@ public class Log {
     }
 
     public static void debug(String msg){
-        Bukkit.getConsoleSender().sendMessage(FORMAT.replaceAll("%", ChatColor.AQUA + msg));
+        if(IEconomy.DEBUG)Bukkit.getConsoleSender().sendMessage(FORMAT.replaceAll("%", ChatColor.UNDERLINE + msg));
     }
 
     public static void error(String msg){

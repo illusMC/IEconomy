@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class IEconomy extends JavaPlugin {
     @Getter
     protected static IEconomy instance;
+    public static boolean DEBUG=false;
     @Override
     public void onEnable() {
         // Plugin startup logic
