@@ -4,11 +4,18 @@ import cc.sfclub.util.common.JsonConfig;
 import lombok.Setter;
 
 public class I18n extends JsonConfig {
+    private String locale="en_US";
     @Setter
     private static I18n inst;
 
-    public I18n(String rootDir) {
+    public I18n(String rootDir,String locale) {
         super(rootDir);
+        this.locale=locale;
+    }
+
+    @Override
+    public String getConfigName() {
+        return locale+".json";
     }
 
     public static I18n get(){

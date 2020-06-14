@@ -10,6 +10,7 @@ import cx.rain.mc.bukkit.ieconomy.utility.Log;
 import lombok.SneakyThrows;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.io.File;
 import java.util.Optional;
 
 public class Loader extends BukkitRunnable {
@@ -34,8 +35,10 @@ public class Loader extends BukkitRunnable {
         config=(Config)config.reloadConfig();
         Config.setInst(config);
         Log.info("Loading Language..");
-        I18n i18N=new I18n(IEconomy.getInstance().getDataFolder().getAbsolutePath());
-        if(!SimpleFile.exists(IEconomy.getInstance().getDataFolder().getAbsolutePath()+"/i18n.json")){
+        File lang=new File(IEconomy.getInstance().getDataFolder().getAbsolutePath()+"/lang");
+        lang.mkdir();
+        I18n i18N=new I18n(IEconomy.getInstance().getDataFolder().getAbsolutePath()+"/lang",config.locale);
+        if(!SimpleFile.exists(IEconomy.getInstance().getDataFolder().getAbsolutePath()+"/lang/"+config.locale+".json")){
             i18N.saveConfig();
         }
         i18N=(I18n)i18N.reloadConfig();
