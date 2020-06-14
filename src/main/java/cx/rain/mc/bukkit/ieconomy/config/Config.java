@@ -7,8 +7,8 @@ import java.util.UUID;
 
 public class Config extends JsonConfig {
 
-    public Database dbInfo= new Database();
-    public String locale="en_US";
+    public Database dbInfo = new Database();
+    public String locale ="en_US";
     @Setter
     private static Config inst;
     public static Config get(){
@@ -18,9 +18,9 @@ public class Config extends JsonConfig {
         super(rootDir);
     }
     public static class Database{
-        public String jdbcUrl="jdbc:sqlite:ieco.db";
-        public String user="root";
-        public String password= UUID.randomUUID().toString();
-        public String driver="org.sqlite.JDBC";
+        public String jdbcUrl = "jdbc:sqlite:ieco.db";
+        public String user = "root";
+        public String password = UUID.randomUUID().toString();
+        public String driver = "org.sqlite.JDBC";
     }
 }
