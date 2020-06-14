@@ -5,7 +5,7 @@ buildscript {
     }
 
     dependencies {
-        //classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
         classpath 'org.jooq:jooq-codegen:3.13.2'
     }
 }
@@ -14,6 +14,7 @@ plugins {
     id 'java'
     id 'maven'
     id 'com.github.johnrengelman.shadow' version '5.2.0'
+    id "de.lukaskoerfer.gradle.delombok" version "0.2"
     //id 'com.ewerk.gradle.plugins.querydsl' version '1.0.10'
 }
 
