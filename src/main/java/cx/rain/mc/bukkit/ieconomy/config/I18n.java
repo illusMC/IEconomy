@@ -14,5 +14,6 @@ public class I18n extends JsonConfig {
     public static I18n get(){
         return inst;
     }
+
     public String new_version_published="Version %v released on %date.\nUpdate it: https://github.com/illusMC/IEconomy/releases";
 }
