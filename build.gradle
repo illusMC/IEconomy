@@ -1,11 +1,38 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:5.1.0"
+    }
+}
+plugins {
+    id "de.lukaskoerfer.gradle.delombok" version "0.2"
+}
 apply plugin: 'java'
+apply plugin: "com.github.johnrengelman.shadow"
 
 group = pluginGroup
 version = pluginVersion
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
+task sourcesJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+}
 
+task javadocJar(type: Jar, dependsOn: [delombok,javadoc]) {
+    from javadoc.destinationDir
+}
+javadoc {
+    options.encoding "UTF-8"
+    options.charSet 'UTF-8'
+    source = "build/delombok/delombok"
+    failOnError = false
+}
+shadowJar {
+    zip64 true
+}
 repositories {
     mavenCentral()
     maven { url 'https://jitpack.io' }
@@ -22,7 +49,8 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compileOnly 'org.projectlombok:lombok:1.18.12'
-    implementation 'com.github.iceBear67:Util:-SNAPSHOT'
+    compile 'com.github.iceBear67:Util:14327dcaa8'
+    compile group: 'com.zaxxer', name: 'HikariCP', version: '3.4.2'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
     compileOnly 'org.spigotmc:spigot-api:1.15.2-R0.1-SNAPSHOT'
 }
