@@ -4,11 +4,15 @@ import cc.sfclub.util.common.SimpleFile;
 import cc.sfclub.util.common.UpdateChecker;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import cx.rain.mc.bukkit.ieconomy.command.Commands;
 import cx.rain.mc.bukkit.ieconomy.config.Config;
 import cx.rain.mc.bukkit.ieconomy.config.I18n;
 import cx.rain.mc.bukkit.ieconomy.utility.Log;
 import lombok.SneakyThrows;
+import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.nutz.dao.Dao;
+import org.nutz.dao.impl.NutDao;
 
 import java.io.File;
 import java.util.Optional;
@@ -20,10 +24,12 @@ public class Loader extends BukkitRunnable {
         IEconomy.getInstance().getDataFolder().mkdir();
         Log.info("Loading Configs..");
         loadConfigs();
-        Log.info("Checking Updates.");
+        Log.info("Checking Updates..");
         checkUpdate();
         Log.info("Loading Database..");
         loadDatabase();
+        Log.info("Coming soon..");
+        IEconomy.getInstance().getCommand("ieco").setExecutor(new Commands());
 
     }
 
@@ -53,7 +59,8 @@ public class Loader extends BukkitRunnable {
         hikariConfig.setPassword(Config.get().dbInfo.password);
         hikariConfig.setDriverClassName(Config.get().dbInfo.driver);
         HikariDataSource ds = new HikariDataSource(hikariConfig);
-        //todo dao here
+        Dao dao=new NutDao(ds);
+        IEconomy.getInstance().dao=dao;
     }
 
     private void checkUpdate(){

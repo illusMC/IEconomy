@@ -56,6 +56,9 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.12'
     compile 'com.github.iceBear67:Util:14327dcaa8'
     compile group: 'com.zaxxer', name: 'HikariCP', version: '3.4.2'
+    // https://mvnrepository.com/artifact/org.nutz/nutz
+    compile group: 'org.nutz', name: 'nutz', version: '1.r.68.v20200427'
+
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
     implementation 'org.spigotmc:spigot:1.13.2-R0.1-20191113.201242-53'
 }

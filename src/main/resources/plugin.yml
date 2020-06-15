@@ -3,6 +3,10 @@ version: @version@
 main: cx.rain.mc.bukkit.ieconomy.IEconomy
 api-version: 1.13
 prefix: IEconomy
-authors: [QiuYuLuo]
-description: An economy plugin for Bukkit server.
+authors: [QiuYuLuo,iceBear67]
+description: I am economy
 website: https://github.com/illusMC/IEconomy
+commands:
+  ieco:
+    description: Main command
+    aliases: [ie]
