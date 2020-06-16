@@ -3,10 +3,10 @@ version: @version@
 main: cx.rain.mc.bukkit.ieconomy.IEconomy
 api-version: 1.13
 prefix: IEconomy
-authors: [QiuYuLuo,iceBear67]
-description: I am economy
+authors: [QiuYuLuo, iceBear67]
+description: I, economy.
 website: https://github.com/illusMC/IEconomy
 commands:
-  ieco:
+  ieconomy:
     description: Main command
     aliases: [ie]

@@ -1,0 +1,7 @@
+general:
+  language: "zh_CN"
+database:
+  jdbcUrl: "jdbc:sqlite://ieconomy.db?"
+  username: "root"
+  password: ""
+  driver: "org.sqlite.JDBC"
