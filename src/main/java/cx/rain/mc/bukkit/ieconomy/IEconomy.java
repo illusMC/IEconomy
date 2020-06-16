@@ -1,13 +1,19 @@
 package cx.rain.mc.bukkit.ieconomy;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import cx.rain.mc.bukkit.ieconomy.command.Commands;
 import cx.rain.mc.bukkit.ieconomy.utility.I18n;
 import cx.rain.mc.bukkit.ieconomy.utility.Log;
 import lombok.Getter;
 import lombok.SneakyThrows;
+import me.lucko.commodore.Commodore;
+import me.lucko.commodore.CommodoreProvider;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.nutz.dao.Dao;
+import org.nutz.dao.impl.NutDao;
 
 import java.io.File;
 
@@ -26,11 +32,22 @@ public final class IEconomy extends JavaPlugin {
         instance = this;
 
         IEconomy.getInstance().getDataFolder().mkdir();
-        Log.info("Loading Configs..");
+        Log.info("Loading configs...");
         loadConfigs();
 
-        Log.info("Coming soon..");
-        new Commands(IEconomy.getInstance());
+        Log.info("Loading database...");
+        loadDatabase();
+
+        Log.info("Coming soon...");
+
+        if (!CommodoreProvider.isSupported()) {
+            Log.fatal("Not supported!");
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+        }
+
+        Commodore commodore = CommodoreProvider.getCommodore(this);
+        new Commands(commodore, IEconomy.getInstance());
 
         new AsyncLoader().runTaskAsynchronously(this);
     }
@@ -53,9 +70,21 @@ public final class IEconomy extends JavaPlugin {
         new I18n(localeString[0], localeString[1]);
     }
 
+    @SneakyThrows
+    private void loadDatabase() {
+        HikariConfig hikariConfig = new HikariConfig();
+        hikariConfig.setJdbcUrl(IEconomy.getInstance().getConfig().getString("database.jdbcUrl"));
+        hikariConfig.setUsername(IEconomy.getInstance().getConfig().getString("database.username"));
+        hikariConfig.setPassword(IEconomy.getInstance().getConfig().getString("database.password"));
+        hikariConfig.setDriverClassName(IEconomy.getInstance().getConfig().getString("database.driver"));
+        HikariDataSource ds = new HikariDataSource(hikariConfig);
+        Dao dao = new NutDao(ds);
+        this.dao = dao;
+    }
+
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-
+        Log.info("Goodbye.");
     }
 }

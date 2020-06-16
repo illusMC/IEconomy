@@ -49,6 +49,10 @@ repositories {
         name = 'sonatype'
         url = 'https://oss.sonatype.org/content/groups/public/'
     }
+    maven {
+        name = 'minecraft'
+        url = 'https://libraries.minecraft.net/'
+    }
 }
 
 dependencies {
@@ -59,8 +63,10 @@ dependencies {
     // https://mvnrepository.com/artifact/org.nutz/nutz
     compile group: 'org.nutz', name: 'nutz', version: '1.r.68.v20200427'
 
+    compile group: 'me.lucko', name: 'commodore', version: '1.5'
+
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
-    implementation 'org.spigotmc:spigot:1.13.2-R0.1-20191113.201242-53'
+    compileOnly 'org.spigotmc:spigot:1.13.2-R0.1-20191113.201242-53'
 }
 
 import org.apache.tools.ant.filters.ReplaceTokens

@@ -6,7 +6,8 @@ prefix: IEconomy
 authors: [QiuYuLuo, iceBear67]
 description: I, economy.
 website: https://github.com/illusMC/IEconomy
+load: POSTWORLD
 commands:
   ieconomy:
-    description: Main command
+    description: IEconomy command.
     aliases: [ie]

@@ -1,12 +1,10 @@
 package cx.rain.mc.bukkit.ieconomy.command;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
+import me.lucko.commodore.Commodore;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Commands {
-    public Commands(JavaPlugin plugin) {
-        plugin.getCommand("ieconomy").setExecutor(new CommandIEconomy());
+    public Commands(Commodore commodore, JavaPlugin plugin) {
+        new CommandIEconomy(commodore, plugin);
     }
 }

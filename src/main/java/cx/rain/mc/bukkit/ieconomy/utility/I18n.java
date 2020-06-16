@@ -17,7 +17,7 @@ public class I18n {
     public I18n(String lang, String country) {
         locale = new Locale(lang, country);
 
-        Log.info("Loading Language..");
+        Log.info("Loading language...");
         File langDir = new File(IEconomy.getInstance().getDataFolder().getAbsolutePath() + "/lang");
         if (!langDir.exists()) {
             langDir.mkdir();
@@ -26,7 +26,7 @@ public class I18n {
         String path = IEconomy.getInstance().getDataFolder().getAbsolutePath() + "/lang/" + locale.toString() + ".yml";
         File langFile = new File(path);
         if (!langFile.exists()) {
-            IEconomy.getInstance().saveResource("/lang/" + locale.toString() + ".yml", true);
+            IEconomy.getInstance().saveResource("lang/" + locale.toString() + ".yml", true);
         }
 
         language = YamlConfiguration.loadConfiguration(langFile);
