@@ -1,6 +1,7 @@
-package cx.rain.mc.bukkit.ieconomy;
+package cx.rain.mc.bukkit.ieconomy.runnable;
 
 import cc.sfclub.util.common.UpdateChecker;
+import cx.rain.mc.bukkit.ieconomy.IEconomy;
 import cx.rain.mc.bukkit.ieconomy.utility.I18n;
 import cx.rain.mc.bukkit.ieconomy.utility.Log;
 import org.bukkit.scheduler.BukkitRunnable;

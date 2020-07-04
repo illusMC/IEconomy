@@ -1,7 +1,40 @@
 general:
   language: "zh_CN"
+# Todo: Unused
 database:
-  jdbcUrl: "jdbc:sqlite:ieconomy.db?"
+  jdbcUrl: "jdbc:mysql://localhost:3306/ieconomy"
   username: "root"
   password: ""
   driver: "org.sqlite.JDBC"
+# How many currencies do your server have?
+currencies:
+  - coins:
+      # Coin name.
+      name: "Coins"
+      # Decimal points.
+      decimal: 2
+  - points:
+      name: "Points"
+      decimal: 2
+tax:
+  # Tax collector, most of the time is server owner.
+  collector: "Infinity_rain"
+  # Tax used currency.
+  currency: "coins"
+  taxes:
+    - resource_tax:
+        # Available types: world, polling.
+        # World: Tax when the player is in a certain world.
+        # Polling: Tax when period time passed.
+        type: "world"
+        # Tax rate.
+        # Tax = rate * the time player in certain world.
+        rate: 0.001
+        # Tax world.
+        world: "res"
+    - gaming_tax:
+        type: "polling"
+        # Tax period. (In seconds.)
+        period: 3600
+        # Tax amount.
+        amount: 20

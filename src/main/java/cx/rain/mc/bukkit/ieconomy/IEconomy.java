@@ -3,6 +3,7 @@ package cx.rain.mc.bukkit.ieconomy;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import cx.rain.mc.bukkit.ieconomy.command.Commands;
+import cx.rain.mc.bukkit.ieconomy.runnable.AsyncLoader;
 import cx.rain.mc.bukkit.ieconomy.utility.I18n;
 import cx.rain.mc.bukkit.ieconomy.utility.Log;
 import lombok.Getter;
@@ -82,6 +83,10 @@ public final class IEconomy extends JavaPlugin {
             ex.printStackTrace();
             Bukkit.getPluginManager().disablePlugin(this);
         }
+    }
+
+    private void loadPlayers() {
+
     }
 
     @Override
