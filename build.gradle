@@ -61,7 +61,7 @@ dependencies {
     compile 'com.github.iceBear67:Util:14327dcaa8'
     compile group: 'com.zaxxer', name: 'HikariCP', version: '3.4.2'
     // https://mvnrepository.com/artifact/org.nutz/nutz
-    compile group: 'org.nutz', name: 'nutz', version: '1.r.68.v20200427'
+    //compile group: 'org.nutz', name: 'nutz', version: '1.r.68.v20200427'
 
     compile group: 'me.lucko', name: 'commodore', version: '1.5'
 

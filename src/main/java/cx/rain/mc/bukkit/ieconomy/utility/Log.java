@@ -17,7 +17,9 @@ public class Log {
     }
 
     public static void debug(String msg){
-        if(IEconomy.DEBUG)Bukkit.getConsoleSender().sendMessage(FORMAT.replaceAll("%", ChatColor.UNDERLINE + msg));
+        if (IEconomy.DEBUG) {
+            Bukkit.getConsoleSender().sendMessage(FORMAT.replaceAll("%", ChatColor.AQUA + msg));
+        }
     }
 
     public static void error(String msg){

@@ -6,23 +6,23 @@ import cx.rain.mc.bukkit.ieconomy.command.Commands;
 import cx.rain.mc.bukkit.ieconomy.utility.I18n;
 import cx.rain.mc.bukkit.ieconomy.utility.Log;
 import lombok.Getter;
-import lombok.SneakyThrows;
 import me.lucko.commodore.Commodore;
 import me.lucko.commodore.CommodoreProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.nutz.dao.Dao;
-import org.nutz.dao.impl.NutDao;
 
+import javax.sql.DataSource;
 import java.io.File;
 
 public final class IEconomy extends JavaPlugin {
     @Getter
     protected static IEconomy instance;
-    @Getter
-    protected Dao dao;
+
     public static boolean DEBUG = false;
+
+    @Getter
+    private DataSource db = null;
 
     private YamlConfiguration config = null;
 
@@ -70,16 +70,18 @@ public final class IEconomy extends JavaPlugin {
         new I18n(localeString[0], localeString[1]);
     }
 
-    @SneakyThrows
     private void loadDatabase() {
-        HikariConfig hikariConfig = new HikariConfig();
-        hikariConfig.setJdbcUrl(IEconomy.getInstance().getConfig().getString("database.jdbcUrl"));
-        hikariConfig.setUsername(IEconomy.getInstance().getConfig().getString("database.username"));
-        hikariConfig.setPassword(IEconomy.getInstance().getConfig().getString("database.password"));
-        hikariConfig.setDriverClassName(IEconomy.getInstance().getConfig().getString("database.driver"));
-        HikariDataSource ds = new HikariDataSource(hikariConfig);
-        Dao dao = new NutDao(ds);
-        this.dao = dao;
+        try {
+            HikariConfig hikariConfig = new HikariConfig();
+            hikariConfig.setJdbcUrl(IEconomy.getInstance().getConfig().getString("database.jdbcUrl"));
+            hikariConfig.setUsername(IEconomy.getInstance().getConfig().getString("database.username"));
+            hikariConfig.setPassword(IEconomy.getInstance().getConfig().getString("database.password"));
+            hikariConfig.setDriverClassName(IEconomy.getInstance().getConfig().getString("database.driver"));
+            db = new HikariDataSource(hikariConfig);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Bukkit.getPluginManager().disablePlugin(this);
+        }
     }
 
     @Override

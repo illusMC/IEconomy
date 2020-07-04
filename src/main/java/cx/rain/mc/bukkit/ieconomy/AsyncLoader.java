@@ -8,7 +8,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.Optional;
 
 public class AsyncLoader extends BukkitRunnable {
-
     @Override
     public void run() {
         Log.info("Checking updates...");

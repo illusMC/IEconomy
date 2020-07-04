@@ -40,7 +40,7 @@ public class I18n {
     public static String format(String key, Object... params) {
         String str = getLang().getString(key);
         if (str == null || str.isEmpty()) {
-            str = "§cMissing key!";
+            str = "§cMissing key " + key + " !";
         }
         return String.format(str, params);
     }
